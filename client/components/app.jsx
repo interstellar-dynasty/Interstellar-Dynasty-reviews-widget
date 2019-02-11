@@ -1,6 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import ReviewList from './reviewList.jsx';
+import _ from 'underscore';
 import Stars from 'react-star-rating-component';
 
 class App extends React.Component {
@@ -13,7 +14,7 @@ class App extends React.Component {
     componentDidMount() {
         Axios.get('/test').then((res) => {
             this.setState({
-                basicReviewData: res.data
+                basicReviewData: _.shuffle(res.data)
             })
         })
     }
@@ -28,8 +29,7 @@ class App extends React.Component {
         }
         return (
             <div style={reviewStyle}>
-            <div style={listStyle}>
-                <h1 style={{justifySelf: 'center'}}>Reviews</h1>  
+            <div style={listStyle}> 
                 <ReviewList reviewData={this.state.basicReviewData}/>
             </div>
             </div>

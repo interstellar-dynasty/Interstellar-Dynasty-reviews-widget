@@ -13,12 +13,13 @@ const Review = (props) => {
             {props.reviewData.map((review) => {
          return (
          <div style={props.style}> 
+            <img src={`${review.photo}`}/>
+            <p style={usernameStyle}>  {review.user_name} </p>
             <Stars 
             name = {'rate' + Math.floor(review.rating)}
             editing = {false}
             value = {Math.floor(review.rating)}
             />
-            <p style={usernameStyle}>  {review.user_name} </p>
             <p stye={descriptionStyle}>  {review.review} </p>
          </div>)
     })}
