@@ -26,7 +26,7 @@ let reviewSchema = new Schema({
 let Review = mongoose.model('Review', reviewSchema);
 
 let queryReviews = () => {
-    return Review.find( { review: {$exists : true} }, {user_name : 1, review : 1, rating : 1, photo : 1, _id : 0})
+    return Review.find( { review: {$exists : true} }, {user_name : 1, review : 1, rating : 1, photo : 1, helpful : 1, _id : 0})
 }
 
 

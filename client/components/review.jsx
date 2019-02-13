@@ -6,7 +6,10 @@ const Review = (props) => {
         fontSize: '17px'
     }
     const descriptionStyle = {
-        fontSize: '13px'
+        fontSize: '14px'
+    }
+    const helpfulStyle = {
+        color: '#767676'
     }
     return (
         <div>
@@ -20,7 +23,8 @@ const Review = (props) => {
             editing = {false}
             value = {Math.floor(review.rating)}
             />
-            <p stye={descriptionStyle}>  {review.review} </p>
+            <p style={descriptionStyle}>  {review.review} </p>
+            <p style={helpfulStyle}> {`${review.helpful} people found this helpful`} </p>
          </div>)
     })}
         </div>
