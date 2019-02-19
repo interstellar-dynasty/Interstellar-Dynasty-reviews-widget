@@ -11,6 +11,10 @@ const Review = (props) => {
     const helpfulStyle = {
         color: '#767676'
     }
+    const dateSyle = {
+        fontSize :'14px',
+        color: '#555'
+    }
     return (
         <div>
             {props.reviewData.map((review) => {
@@ -22,8 +26,9 @@ const Review = (props) => {
             name = {'rate' + Math.floor(review.rating)}
             editing = {false}
             value = {Math.floor(review.rating)}
-            />
-            <p style={descriptionStyle}>  {review.review} </p>
+            /> <br/>
+            <span style={dateSyle}> {review.date} </span> <br/>
+            <span style={descriptionStyle}>  {review.review} </span>
             <p style={helpfulStyle}> {`${review.helpful} people found this helpful`} </p>
          </div>)
     })}

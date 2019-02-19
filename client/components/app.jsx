@@ -27,8 +27,15 @@ class App extends React.Component {
             this.setState({
                 basicReviewData: _.sortBy(this.state.basicReviewData, 'helpful').reverse()
             })
+            } else if (optionValue === 'mostRecent') {
+                this.setState({
+                    basicReviewData: _.sortBy(this.state.basicReviewData, (node) => {
+                        return -(new Date(node.date).getTime())
+                    })
+                })
             }
     }
+                
     render(){
         const listStyle = {
             display: 'grid',
