@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-const dbUrl = 'mongodb://localhost:27017/Reviews';
+const dbUrl = 'mongodb+srv://devnoah:<Siddha123>@reviewsservice-f0rzs.mongodb.net/test?retryWrites=true';
 const mongoImport = require('mongoimport');
 
 mongoose.connect(dbUrl, { useNewUrlParser: true },(err) => {
@@ -10,7 +10,6 @@ mongoose.connect(dbUrl, { useNewUrlParser: true },(err) => {
         console.log('database connected')
     }
 });
-
 
 let reviewSchema = new Schema({
     user_name: String,

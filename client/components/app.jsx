@@ -3,7 +3,6 @@ import Axios from 'axios';
 import ReviewList from './reviewList.jsx';
 import Dropdown from './dropdown.jsx'
 import _ from 'underscore';
-import Stars from 'react-star-rating-component';
 
 class App extends React.Component {
     constructor(props) {
