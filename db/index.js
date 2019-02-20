@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-const dbUrl = 'mongodb+srv://devnoah:<Siddha123>@reviewsservice-f0rzs.mongodb.net/test?retryWrites=true';
+const dbUrl = 'mongodb+srv://devnoah:Siddha123@reviewsservice-f0rzs.mongodb.net/test?retryWrites=true';
 const mongoImport = require('mongoimport');
 
 mongoose.connect(dbUrl, { useNewUrlParser: true },(err) => {
