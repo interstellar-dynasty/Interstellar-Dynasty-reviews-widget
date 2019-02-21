@@ -11,7 +11,8 @@
     "test": "jest",
     "webpack": "webpack --config ./webpack.config.js -w --mode production",
     "start": "nodemon ./server/server.js",
-    "database": "mongoimport --host ReviewsService-shard-0/reviewsservice-shard-00-00-f0rzs.mongodb.net:27017,reviewsservice-shard-00-01-f0rzs.mongodb.net:27017,reviewsservice-shard-00-02-f0rzs.mongodb.net:27017 --ssl --username devnoah --password Siddha123 --authenticationDatabase admin --db Reviews --collection reviews --type json --file ./data.json --jsonArray"
+    "database": "mongoimport --host ReviewsService-shard-0/reviewsservice-shard-00-00-f0rzs.mongodb.net:27017,reviewsservice-shard-00-01-f0rzs.mongodb.net:27017,reviewsservice-shard-00-02-f0rzs.mongodb.net:27017 --ssl --username devnoah --password Siddha123 --authenticationDatabase admin --db Reviews --collection reviews --type json --file ./data.json --jsonArray",
+    "pstart": "node ./server/server.js"
   },
   "dependencies": {
     "@babel/cli": "^7.2.3",
