@@ -14,8 +14,11 @@ class App extends React.Component {
     }
     componentDidMount() {
         Axios.get('/test').then((res) => {
+            let shuffled = _.shuffle(res.data)
+            let rando = shuffled.slice(0, Math.floor(Math.random() * 20))
+            console.log(rando)
             this.setState({
-                basicReviewData: _.shuffle(res.data)
+                basicReviewData: rando
             })
         })
     }
