@@ -10,7 +10,7 @@ const Dropdown = (props) => {
     }
 return(
 <select onChange={props.handleDropDown} style={dropDownStyle}name="reviews">
-    <option value="topReviews">Top Reviews</option>
+    <option value="topReviews">Most Helpful</option>
     <option value="mostRecent">Most Recent</option>
 </select>
 )
