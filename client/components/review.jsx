@@ -15,13 +15,19 @@ const Review = (props) => {
         fontSize :'14px',
         color: '#555'
     }
+    const profileStyle = {
+        borderRadius : '50%',
+        border : '.5px solid black',
+        height: '40px',
+        width : '40px'
+    }
     return (
         <div>
             {props.reviewData.map((review) => {
          return (
-         <div style={props.style}> 
-            <img src={`${review.photo}`}/>
-            <p style={usernameStyle}>  {review.user_name} </p>
+         <div style={props.style}> <br/>
+            <img style={profileStyle} src={`${review.photo}`}/>
+            <span style={usernameStyle}>  {review.user_name} </span> <br/>
             <Stars 
             name = {'rate' + Math.floor(review.rating)}
             editing = {false}
