@@ -15,7 +15,9 @@ let reviewSchema = new Schema({
     user_name: String,
     review: String,
     rating: Number,
-    photo: { data: Buffer, contentType: String}
+    photo: String,
+    date: String,
+    helpful: Number
     
 },
 {

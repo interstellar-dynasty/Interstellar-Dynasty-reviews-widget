@@ -14,11 +14,14 @@ class App extends React.Component {
         this.state = {
             basicReviewData: [],
             review: '',
-            rating: 0
+            rating: 0,
+            username: ''
         }
-        this.handleDropDown = this.handleDropDown.bind(this)
-        this.handleReview = this.handleReview.bind(this)
-        this.onStarHover = this.onStarHover.bind(this)
+        this.handleDropDown = this.handleDropDown.bind(this);
+        this.handleReview = this.handleReview.bind(this);
+        this.onStarHover = this.onStarHover.bind(this);
+        this.handleUsername = this.handleUsername.bind(this);
+        this.postReview = this.postReview.bind(this);
     }
     componentDidMount() {
         Axios.get('/test').then((res) => {
@@ -46,6 +49,20 @@ class App extends React.Component {
         }
     }
     
+    postReview() {
+    Axios.post('/review', {
+        user_name: this.state.username,
+        review: this.state.review,
+        rating: this.state.rating,
+        date: new Date().toDateString().slice(4)
+    })
+    .then(res => {
+        let newData = this.state.basicReviewData
+        newData.unshift(res.data)
+        this.setState({basicReviewData : newData})
+    })
+    }
+
     onStarHover(nextValue, prevValue, name) {
         this.setState({
             rating: nextValue
@@ -57,7 +74,12 @@ class App extends React.Component {
             review: event.target.value
         })
     }
-                
+    
+    handleUsername(event) {
+        this.setState({
+            username: event.target.value
+        })
+    }
     render(){
         const listStyle = {
             display: 'grid',
@@ -79,7 +101,7 @@ class App extends React.Component {
         return (
             <div style={reviewStyle}>
             <div style={postStyle}>
-            <Post rating={this.state.rating} onStarHover={this.onStarHover} onChange={this.handleReview}/>
+            <Post rating={this.state.rating} handlePost={this.postReview} handleUsername={this.handleUsername} onStarHover={this.onStarHover} onChange={this.handleReview}/>
             </div>
             <div style={listStyle}> 
                 <Dropdown data={this.state.basicReviewData} handleDropDown={this.handleDropDown}/>
