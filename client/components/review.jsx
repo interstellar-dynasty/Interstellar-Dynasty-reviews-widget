@@ -16,10 +16,9 @@ const Review = (props) => {
         color: '#555'
     }
     const profileStyle = {
-        borderRadius : '50%',
-        border : '.5px solid black',
-        height: '40px',
-        width : '40px'
+        borderRadius: '34px',
+        border: '1px solid grey',
+        cursor: 'pointer'
     }
     return (
         <div>

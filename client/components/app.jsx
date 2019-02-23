@@ -2,16 +2,23 @@ import React from 'react';
 import Axios from 'axios';
 import ReviewList from './reviewList.jsx';
 import Dropdown from './dropdown.jsx';
-import Post from './writeReview.jsx'
+import Post from './writeReview.jsx';
+import Stars from 'react-star-rating-component';
+
+
 import _ from 'underscore';
 
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            basicReviewData: []
+            basicReviewData: [],
+            review: '',
+            rating: 0
         }
         this.handleDropDown = this.handleDropDown.bind(this)
+        this.handleReview = this.handleReview.bind(this)
+        this.onStarHover = this.onStarHover.bind(this)
     }
     componentDidMount() {
         Axios.get('/test').then((res) => {
@@ -23,20 +30,32 @@ class App extends React.Component {
             })
         })
     }
-
+    
     handleDropDown(event) {
         let optionValue = event.target.value
-            if(optionValue === 'topReviews') {
+        if(optionValue === 'topReviews') {
             this.setState({
                 basicReviewData: _.sortBy(this.state.basicReviewData, 'helpful').reverse()
             })
-            } else if (optionValue === 'mostRecent') {
-                this.setState({
-                    basicReviewData: _.sortBy(this.state.basicReviewData, (node) => {
-                        return -(new Date(node.date).getTime())
-                    })
+        } else if (optionValue === 'mostRecent') {
+            this.setState({
+                basicReviewData: _.sortBy(this.state.basicReviewData, (node) => {
+                    return -(new Date(node.date).getTime())
                 })
-            }
+            })
+        }
+    }
+    
+    onStarHover(nextValue, prevValue, name) {
+        this.setState({
+            rating: nextValue
+        })
+    }
+
+    handleReview(event) {
+        this.setState({
+            review: event.target.value
+        })
     }
                 
     render(){
@@ -45,22 +64,25 @@ class App extends React.Component {
             gridColumn: '2'
         }
         const postStyle = {
+            display: 'grid',
+            gridTemplateRows: '300px 300px 1fr',
             border: '1 px solid black',            
             display : 'grid',
             gridColumn : '1'
         }
         const reviewStyle = {
-            fontFamily: '"Amazon Ember", Arial, sans-serif',
+            borderTop: '1px solid #e7e7e7',
+            fontFamily: '"Lato", Arial, sans-serif',
             display: 'grid',
             gridTemplateColumns: '400px 1fr 400px'
         }
         return (
             <div style={reviewStyle}>
             <div style={postStyle}>
-            <Post />
+            <Post rating={this.state.rating} onStarHover={this.onStarHover} onChange={this.handleReview}/>
             </div>
             <div style={listStyle}> 
-                <Dropdown handleDropDown={this.handleDropDown}/>
+                <Dropdown data={this.state.basicReviewData} handleDropDown={this.handleDropDown}/>
                 <ReviewList reviewData={this.state.basicReviewData}/>
             </div>
             </div>
