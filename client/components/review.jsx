@@ -29,6 +29,7 @@ const Review = (props) => {
             <span style={usernameStyle}>  {review.user_name} </span> <br/>
             <Stars 
             name = {'rate' + Math.floor(review.rating)}
+            starColor = {"#ffce00"}
             editing = {false}
             value = {Math.floor(review.rating)}
             /> <br/>

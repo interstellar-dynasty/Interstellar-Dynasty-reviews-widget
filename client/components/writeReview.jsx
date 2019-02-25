@@ -60,7 +60,7 @@ const Post = (props) => {
     resize : 'none'
     }
     return(
-        <div style={{gridRow: '2', borderTop: '1px solid #e7e7e7'}}>
+        <div style={{gridRow: '2', borderTop: '1px solid #e7e7e7', borderBottom: '1px solid #e7e7e7'}}>
         <h3 style={headerStyle}>Review this product</h3>
         <div style-={thoughtsStyle}> Share your thoughts with other customers</div>
         <span style={buttonStyle}>  

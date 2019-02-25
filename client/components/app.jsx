@@ -3,6 +3,7 @@ import Axios from 'axios';
 import ReviewList from './reviewList.jsx';
 import Dropdown from './dropdown.jsx';
 import Post from './writeReview.jsx';
+import Chart from './barChart.jsx'
 import Stars from 'react-star-rating-component';
 
 
@@ -23,7 +24,21 @@ class App extends React.Component {
         this.handleUsername = this.handleUsername.bind(this);
         this.postReview = this.postReview.bind(this);
     }
+
+
     componentDidMount() {
+        window.addEventListener('newPage', (event) => {
+            if(event.detail) {
+                Axios.get('/test').then((res) => {
+                    let shuffled = _.shuffle(res.data)
+                    let rando = shuffled.slice(0, Math.floor(Math.random() * 20))
+                    console.log(rando)
+                    this.setState({
+                        basicReviewData: rando
+                    })
+                })
+            }
+          }, false);
         Axios.get('/test').then((res) => {
             let shuffled = _.shuffle(res.data)
             let rando = shuffled.slice(0, Math.floor(Math.random() * 20))
@@ -101,6 +116,7 @@ class App extends React.Component {
         return (
             <div style={reviewStyle}>
             <div style={postStyle}>
+            <Chart data={this.state.basicReviewData}/>
             <Post rating={this.state.rating} handlePost={this.postReview} handleUsername={this.handleUsername} onStarHover={this.onStarHover} onChange={this.handleReview}/>
             </div>
             <div style={listStyle}> 
